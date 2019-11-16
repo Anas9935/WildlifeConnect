@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "584747153273",
+    "firebase_url": "https://wildlifeconnect-6e886.firebaseio.com",
+    "project_id": "wildlifeconnect-6e886",
+    "storage_bucket": "wildlifeconnect-6e886.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584747153273:android:800d39f70d0a205802e1a8",
+        "android_client_info": {
+          "package_name": "com.example.wildlifeconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584747153273-a6v33n9viahumr5d8o67e6oold6guish.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.application",
+            "certificate_hash": "100237b9a29f866fde86f560b3dbe1d2fdabd52f"
+          }
+        },
+        {
+          "client_id": "584747153273-j5u8u1669qg3d3973o1g5m2gkdr0t2d4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ831rcVhjBpfAd1E8uMXj8YSdpq7PjlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584747153273-j5u8u1669qg3d3973o1g5m2gkdr0t2d4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

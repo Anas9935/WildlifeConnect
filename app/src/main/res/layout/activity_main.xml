@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="80dp"
+        android:paddingLeft="80dp"
+        tools:ignore="MissingConstraints">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/main_raise_flag"
+            android:layout_width="228dp"
+            android:layout_height="99dp"
+            android:text="RAISE FLAG"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="93dp"
+            />
+        <Button
+            android:id="@+id/main_searchFlag"
+            android:layout_width="228dp"
+            android:layout_height="99dp"
+            android:text="search FLAG"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="93dp"
+            />
+        <Button
+            android:id="@+id/main_view_flag"
+            android:layout_width="228dp"
+            android:layout_height="99dp"
+            android:textStyle="bold"
+            android:text="view FLAG"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="93dp"
+            />
+        <Button
+            android:id="@+id/main_deleteFlag"
+            android:layout_width="228dp"
+            android:layout_height="99dp"
+            android:text="delete FLAG"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="93dp"
+            />
+        <Button
+            android:id="@+id/main_requests"
+            android:layout_width="228dp"
+            android:layout_height="99dp"
+            android:text="REQUEST FLAG"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="93dp"
+            />
+    </LinearLayout>
