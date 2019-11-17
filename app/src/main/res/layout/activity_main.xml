@@ -38,10 +38,10 @@
             tools:layout_editor_absoluteY="93dp"
             />
         <Button
-            android:id="@+id/main_deleteFlag"
+            android:id="@+id/main_update_flag"
             android:layout_width="228dp"
             android:layout_height="99dp"
-            android:text="delete FLAG"
+            android:text="Update FLAG"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="93dp"
@@ -50,7 +50,7 @@
             android:id="@+id/main_requests"
             android:layout_width="228dp"
             android:layout_height="99dp"
-            android:text="REQUEST FLAG"
+            android:text="View Requests"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="93dp"

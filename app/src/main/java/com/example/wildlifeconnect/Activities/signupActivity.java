@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -29,11 +32,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class signupActivity extends AppCompatActivity {
-
+    String uid;
     EditText orgName,regNumber,userName,presUId,email,password,confPass;
     RadioGroup desigRadioGrp;
     RadioButton presBtn,leadBtn;
-    Button register,currLoc,findLoc;
+    Button register,findLoc;
+    ImageView currLoc;
     float lon=0.0f,lat=0.0f;
 
     FirebaseAuth mAuth;
@@ -45,6 +49,7 @@ public class signupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         initializeViews();
+        mAuth=FirebaseAuth.getInstance();
         setupRadioBtn();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +87,7 @@ public class signupActivity extends AppCompatActivity {
         String confPa=confPass.getText().toString();
 
         if(pass.equals(confPa)){
-            if(leadBtn.isEnabled()){
+            if(leadBtn.isChecked()){
                 checkUid(presuid);
             }
             else{
@@ -98,7 +103,6 @@ public class signupActivity extends AppCompatActivity {
 
         String mail=email.getText().toString();
         String pass=password.getText().toString();
-        String confPa=confPass.getText().toString();
 
 
         mAuth.createUserWithEmailAndPassword(mail, pass)
@@ -125,23 +129,48 @@ public class signupActivity extends AppCompatActivity {
 
         }
     private void updateUI(FirebaseUser user) {
+        if(user==null){
+            Log.e("tag", "updateUI: "+"some error" );
+            return;
+        }
         String org=orgName.getText().toString();
         String regNo=regNumber.getText().toString();
         String n=userName.getText().toString();
         String mail=email.getText().toString();
+        String presuid=presUId.getText().toString();
+        uid = user.getUid();
+        Users newuser = new Users(uid, 0, n, org, regNo, mail, uid, lat, lon);
 
-        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Users");
-        String key=ref.push().getKey();
-        if(key!=null){
-            Users  newuser=new Users(key,0,n,org,regNo,mail,key,lat,lon);
-            ref.child(key).setValue(newuser);
-            Intent intent=new Intent(signupActivity.this,MainActivity.class);
-            intent.putExtra("type",0);
+        if(leadBtn.isChecked()){
+            newuser.setIsActive(0);
+            newuser.setType(1);
+            newuser.setPresUid(presuid);
+        }else {
+            newuser.setIsActive(1);
+        }
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            //String key=ref.push().getKey();
+
+
+            ref.child(uid).setValue(newuser);
+
+        if(leadBtn.isChecked()){
+
+            Intent intent = new Intent(signupActivity.this, RequestedActivity.class);
+            startActivity(intent);
+            FirebaseAuth.getInstance().signOut();
+            finish();
+        }else {
+
+            Intent intent = new Intent(signupActivity.this, MainActivity.class);
+            intent.putExtra("type", 0);
             startActivity(intent);
             finish();
-
-
         }
+
+
+
+
     }
     private void checkUid(final String presuid) {
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
@@ -150,7 +179,7 @@ public class signupActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users user=dataSnapshot.getValue(Users.class);
                 if(user!=null){
-                    saveDataInRequestDatabase(presuid);
+                    saveDataInDatabase();
                 }else{
                     Toast.makeText(signupActivity.this, "No president With Such id, Make Sure the caps are correct"
                             , Toast.LENGTH_SHORT).show();
@@ -166,25 +195,16 @@ public class signupActivity extends AppCompatActivity {
 
     private void saveDataInRequestDatabase(String presuid) {
 
-        String pas=password.getText().toString();
+        String mail=email.getText().toString();
+        String pass=password.getText().toString();
+
+
         String org=orgName.getText().toString();
         String regNo=regNumber.getText().toString();
         String n=userName.getText().toString();
-        String mail=email.getText().toString();
-
-        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("requestUsers");
-        String key=ref.push().getKey();
-        if(key!=null){
-            Users  newuser=new Users(key,1,n,org,regNo,mail,presuid,lat,lon);
-            newuser.setPassword(pas);
-            ref.child(key).setValue(newuser);
-
-            Intent intent=new Intent(signupActivity.this,RequestedActivity.class);
-            startActivity(intent);
-            finish();
 
 
-        }
+
 
     }
 
@@ -194,12 +214,12 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    presBtn.setEnabled(true);
-                    leadBtn.setEnabled(false);
+                    presBtn.setChecked(true);
+                    leadBtn.setChecked(false);
                     presUId.setVisibility(View.GONE);
                 } else {
-                    presBtn.setEnabled(false);
-                    leadBtn.setEnabled(true);
+                    presBtn.setChecked(false);
+                    leadBtn.setChecked(true);
                     presUId.setVisibility(View.VISIBLE);
                 }
             }
@@ -217,7 +237,13 @@ public class signupActivity extends AppCompatActivity {
         presBtn=findViewById(R.id.presRadioBtn);
         leadBtn=findViewById(R.id.LeaderRadioBtn);
 
+        register=findViewById(R.id.signup_log_in);
+        currLoc=findViewById(R.id.current_location);
+        findLoc=findViewById(R.id.signup_findlocBtn);
+
 
 
     }
+
+
 }

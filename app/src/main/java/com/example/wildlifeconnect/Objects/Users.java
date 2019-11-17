@@ -10,7 +10,7 @@ public class Users {
     private String presUid;
     private float lat;
     private float lon;
-    private String password;
+    private int isActive;       //0->false,1->true
     public Users() {
     }
 
@@ -26,17 +26,19 @@ public class Users {
         this.lon = lon;
     }
 
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
+    }
+
     public String getPresUid() {
         return presUid;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public void setPresUid(String presUid) {
         this.presUid = presUid;

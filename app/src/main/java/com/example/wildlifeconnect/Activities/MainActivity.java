@@ -1,13 +1,21 @@
 package com.example.wildlifeconnect.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.wildlifeconnect.R;
+import com.example.wildlifeconnect.myServiceReceiver;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,6 +32,7 @@ int type;
         initialiseViews();
 
         setTheButtons();
+        startServices();
 
         raise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +87,15 @@ int type;
 
     }
 
+    private void startServices() {
+        Intent intent=new Intent(MainActivity.this, myServiceReceiver.class);
+        PendingIntent pIntent=PendingIntent.getBroadcast(this,myServiceReceiver.REQUEST_CODE,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager=(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),60000000L,pIntent);
+
+    }
+
     private void setTheButtons() {
         if(type==0){
             //president
@@ -95,10 +113,30 @@ int type;
     }
 
     private void initialiseViews() {
-        raise=findViewById(R.id.);
-        search=findViewById(R.id.);
-        view=findViewById(R.id.);
-        update=findViewById(R.id.);
-        request=findViewById(R.id.);
+        raise=findViewById(R.id.main_raise_flag);
+        search=findViewById(R.id.main_searchFlag);
+        view=findViewById(R.id.main_view_flag);
+        update=findViewById(R.id.main_update_flag);
+        request=findViewById(R.id.main_requests);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_sign_up,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.main_action_signout :{
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                return true;
+            }
+            default:{
+                return super.onOptionsItemSelected(item);
+            }
+        }
     }
 }

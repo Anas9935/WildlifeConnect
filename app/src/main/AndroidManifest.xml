@@ -16,14 +16,21 @@
         <activity android:name=".Activities.viewAllFlags" />
         <activity android:name=".Activities.UpdateFlagActivity" />
         <activity android:name=".Activities.FlagFormActivity" />
-        <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.MainActivity">
+
+        </activity>
+        <service android:name=".NewFlagService"
+            android:exported="false"
+            />
+        <receiver android:name=".myServiceReceiver"
+            android:process=".remote"/>
     </application>
 
 </manifest>

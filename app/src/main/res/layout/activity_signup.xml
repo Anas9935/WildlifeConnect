@@ -18,7 +18,7 @@
             android:id="@+id/login_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/ic_launcher_background"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             />
@@ -39,7 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ngo_name"
             android:layout_marginTop="8dp"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:inputType="number"
+            />
 
         <EditText
             android:id="@+id/user_name"
@@ -57,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
             android:orientation="horizontal"
+            android:layout_marginStart="16dp"
             >
             <RadioButton
                 android:id="@+id/presRadioBtn"
@@ -110,45 +113,62 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/first_password"
-            android:inputType="textPassword"
             android:layout_marginTop="8dp"
             android:layout_margin="8dp"/>
+        <LinearLayout
+            android:id="@+id/signup_loc_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/confirm_password"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/head_addr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Office Location"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_below="@id/confirm_password"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                />
 
+            <ImageButton
+                android:id="@+id/current_location"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_my_location_black_24dp"
+                android:layout_toRightOf="@id/head_addr"
+                android:layout_below="@id/confirm_password"
+                android:layout_marginStart="16dp"
+                />
+
+            <Button
+                android:id="@+id/signup_findlocBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Find on Map"
+                android:layout_below="@id/confirm_password"
+                android:layout_toRightOf="@id/current_location"/>
+
+        </LinearLayout>
         <TextView
-            android:id="@+id/head_addr"
+            android:id="@+id/signupLocName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Head Office Location"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_below="@id/confirm_password"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_below="@id/signup_loc_layout"
+            tools:text="New Delhi"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
             />
-
-        <ImageButton
-            android:id="@+id/current_loaction"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_my_location_black_24dp"
-            android:layout_toRightOf="@id/head_addr"
-            android:layout_below="@id/confirm_password"
-            android:layout_marginLeft="8dp"
-            />
-
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Find on Map"
-            android:layout_below="@id/confirm_password"
-            android:layout_toRightOf="@id/current_loaction"/>
-        <Button
-            android:id="@+id/log_in"
+            android:id="@+id/signup_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="REGISTER"
-            android:layout_below="@id/head_addr"
-            android:layout_marginTop="24dp"
+            android:layout_below="@id/signupLocName"
+            android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
 
             />

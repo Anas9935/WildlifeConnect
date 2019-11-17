@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String mail=email.getText().toString();
+                String pass=password.getText().toString();
 
+                login(mail,pass);
 
             }
 
@@ -60,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //goto new Id page
+                Intent intent=new Intent(LoginActivity.this,signupActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -76,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void login(String mail, String pass) {
+    private void login(final String mail, final String pass) {
         fbauth.signInWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -84,7 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                     FirebaseUser user=fbauth.getCurrentUser();
                     updateUi(user);
                 }else{
-                    Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(LoginActivity.this,RequestedActivity.class);
+                    startActivity(intent);
                     updateUi(null);
                 }
             }
@@ -95,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onStart() {
@@ -110,17 +119,34 @@ public class LoginActivity extends AppCompatActivity {
         //login
         saveEmailInPreference();
         password.setText("");
+
+
+
         final Intent intent=new Intent(LoginActivity.this,MainActivity.class);
         intent.putExtra("uid",currUser.getUid());
        // startActivity(intent);
+        Log.e("Test", "updateUi: "+currUser.getUid() );
         DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(fbauth.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users obj=dataSnapshot.getValue(Users.class);
-                int type=obj.getType();
-                intent.putExtra("type",type);
-                startActivity(intent);
+                if(obj!=null){
+                    if(obj.getIsActive()==1){
+
+                        int type = obj.getType();
+                        intent.putExtra("type", type);
+                        startActivity(intent);
+                    }else if(obj.getIsActive()==0 ||obj.getIsActive()==2){
+                        Intent in=new Intent(LoginActivity.this,RequestedActivity.class);
+                        in.putExtra("status",obj.getIsActive());
+                        in.putExtra("uid",obj.getUid());
+                        startActivity(in);
+
+                    }
+                }else{
+                    Toast.makeText(LoginActivity.this, "Your Account Doesn't Exist", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
