@@ -18,7 +18,8 @@
         android:id="@+id/flag_todo_icon"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:src="@drawable/ic_flag_black_24dp" />
+        android:src="@drawable/red"
+        android:paddingEnd="4dp"/>
 
     <TextView
         android:id="@+id/flag_todo_tag"

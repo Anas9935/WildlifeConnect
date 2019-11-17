@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,12 +41,30 @@ public class AllFlagAdapter extends ArrayAdapter<FlagObject> {
         }
         FlagObject current=list.get(position);
         final TextView title,org,tags,mail,loc,rOn;
+        ImageView icon;
+        icon=view.findViewById(R.id.flag_todo_icon);
         title=view.findViewById(R.id.all_flag_todo_tag);
         org=view.findViewById(R.id.all_flag_todo_ngoName);
         tags=view.findViewById(R.id.all_flag_todo_tagsList);
         loc=view.findViewById(R.id.all_flag_todo_locationName);
         mail=view.findViewById(R.id.all_flag_todo_mailAddr);
         rOn=view.findViewById(R.id.all_flag_todo_raiseDate);
+
+        switch (current.getStatus()){
+            case 0:{
+                icon.setImageResource(R.drawable.black);
+                break;
+            }
+            case 1:{
+                icon.setImageResource(R.drawable.red);
+                break;
+
+            }
+            case 2:{
+                icon.setImageResource(R.drawable.green);
+                break;
+            }
+        }
 
         title.setText(current.getSubject());
         UtilityClass.getName(current.getRaiserId(), new UserInterface() {

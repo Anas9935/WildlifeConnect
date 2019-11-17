@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_back"
-    tools:context=".Activities.LoginActivity">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
+
         android:orientation="vertical"
+        android:background="@drawable/cheetah"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/corner_card"
         >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textSize="24sp"
-            android:text="Wildlife Connect"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:gravity="center"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        >
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/logo_icon"
+            android:layout_centerInParent="true"
+
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_logo"
+            android:layout_centerHorizontal="true"
+            android:text=" WILDLIFE CONNECT"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+
+            />
+    </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:background="@drawable/corner_card_white"
+
             android:elevation="5dp"
 
             android:orientation="vertical"
@@ -45,31 +55,41 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:clickable="true"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+                android:layout_width="0px"
+                android:layout_height="0px" />
 
-                <EditText
-                    android:id="@+id/login_email_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="E-Mail"
-                    android:layout_marginTop="32dp"
-                    android:paddingRight="16dp"
-                    android:paddingLeft="16dp"
-                    />
+            <EditText
+                android:id="@+id/login_email_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-Mail"
+                android:layout_marginTop="32dp"
+                android:inputType="textEmailAddress"
+                android:background="#11000000"
+                android:paddingRight="16dp"
+                android:drawableStart="@drawable/ic_email_black_24dp"
+
+                android:layout_margin="8dp"
+                android:paddingLeft="16dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                />
 
 
-                <EditText
-                    android:id="@+id/login_password_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:layout_below="@id/login_email_edit"
-
-                    android:paddingRight="16dp"
-                    android:paddingLeft="16dp"
-                    />
+            <EditText
+                android:id="@+id/login_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_below="@id/login_email_edit"
+                android:layout_margin="8dp"
+                android:paddingRight="16dp"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:paddingLeft="16dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                 />
 
 
             <TextView
@@ -82,10 +102,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="32dp"
                 android:textColor="#fff"
-                android:background="@drawable/corner_card"
+                android:background="@drawable/corner_card_white"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
                 android:textStyle="bold"
+                android:shadowColor="#424242"
+                android:backgroundTint="#aed581"
+
                 />
 
             <TextView
@@ -98,18 +121,25 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/corner_card"
+                android:background="@drawable/corner_card_white"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
                 android:layout_below="@id/login_login_btn"
                 android:textStyle="bold"
+                android:shadowColor="#424242"
+                android:backgroundTint="#aed581"
                 />
 
-
+            <ProgressBar
+                android:id="@+id/loginProgBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                />
 
 
         </RelativeLayout>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>

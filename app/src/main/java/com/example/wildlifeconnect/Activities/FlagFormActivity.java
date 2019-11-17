@@ -77,6 +77,7 @@ ImageView addTag,location1,cal;
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 timeExpStamp=myCalendar.getTimeInMillis();
+                calText.setText(UtilityClass.getdate(timeExpStamp));
             }
 
         };

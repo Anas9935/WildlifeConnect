@@ -1,58 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="80dp"
-        android:paddingLeft="80dp"
-        tools:ignore="MissingConstraints">
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="fill_parent"
+android:layout_height="match_parent"
 
-        <Button
-            android:id="@+id/main_raise_flag"
-            android:layout_width="228dp"
-            android:layout_height="99dp"
-            android:text="RAISE FLAG"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="93dp"
-            />
-        <Button
-            android:id="@+id/main_searchFlag"
-            android:layout_width="228dp"
-            android:layout_height="99dp"
-            android:text="search FLAG"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="93dp"
-            />
-        <Button
-            android:id="@+id/main_view_flag"
-            android:layout_width="228dp"
-            android:layout_height="99dp"
-            android:textStyle="bold"
-            android:text="view FLAG"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="93dp"
-            />
-        <Button
-            android:id="@+id/main_update_flag"
-            android:layout_width="228dp"
-            android:layout_height="99dp"
-            android:text="Update FLAG"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="93dp"
-            />
-        <Button
-            android:id="@+id/main_requests"
-            android:layout_width="228dp"
-            android:layout_height="99dp"
-            android:text="View Requests"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="93dp"
-            />
-    </LinearLayout>
+    android:background="@drawable/woods"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:paddingLeft="80dp"
+    tools:ignore="MissingConstraints">
+
+    <Button
+        android:id="@+id/main_raise_flag"
+        android:layout_width="228dp"
+        android:layout_height="99dp"
+        android:text="RAISE FLAG"
+        android:textStyle="bold"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_flag_black_whitep"
+        android:gravity="center"
+        android:drawablePadding="2dip"
+        android:layout_marginTop="16dp"
+        tools:layout_editor_absoluteY="93dp"
+        />
+    <Button
+        android:id="@+id/main_searchFlag"
+        android:layout_width="228dp"
+        android:layout_height="99dp"
+        android:text="search FLAG"
+        android:textStyle="bold"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_search_black_white"
+        android:gravity="center"
+        android:drawablePadding="2dip"
+        tools:layout_editor_absoluteX="94dp"
+        android:layout_marginTop="16dp"
+        tools:layout_editor_absoluteY="93dp"
+
+        />
+    <Button
+        android:id="@+id/main_view_flag"
+        android:layout_width="228dp"
+        android:layout_height="99dp"
+        android:textStyle="bold"
+        android:text="view FLAG"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
+        android:gravity="center"
+        android:drawablePadding="2dip"
+        tools:layout_editor_absoluteX="94dp"
+        android:layout_marginTop="16dp"
+        tools:layout_editor_absoluteY="93dp"
+        android:drawableLeft="@drawable/ic_menu_black_24dp"
+        />
+
+    <Button
+        android:id="@+id/main_update_flag"
+        android:layout_width="228dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_update_black_24dp"
+        android:drawablePadding="2dip"
+        android:gravity="center"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
+        android:text="Update FLAG"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <Button
+        android:id="@+id/main_requests"
+        android:layout_width="228dp"
+        android:layout_height="99dp"
+        android:text="REQUEST FLAG"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_message_black_24dp"
+        android:gravity="center"
+        android:drawablePadding="2dip"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="93dp"
+        />
+</LinearLayout>
+</ScrollView>

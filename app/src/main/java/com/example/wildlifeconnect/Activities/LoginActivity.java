@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     TextView login,signup;
-
+    ProgressBar pro;
     EditText email,password;
 
 
@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 String pass=password.getText().toString();
 
                 login(mail,pass);
+                pro.setVisibility(View.VISIBLE);
 
             }
 
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         signup=findViewById(R.id.login_signup_btn);
         email=findViewById(R.id.login_email_edit);
         password=findViewById(R.id.login_password_edit);
+        pro=findViewById(R.id.loginProgBar);
 
     }
 
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
+                pro.setVisibility(View.GONE);
             }
         });
     }
@@ -109,11 +112,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currUser=fbauth.getCurrentUser();
+        pro.setVisibility(View.GONE);
         updateUi(currUser);
     }
 
     private void updateUi(FirebaseUser currUser) {
         if(currUser==null){
+            pro.setVisibility(View.GONE);
             return;
         }
         //login
@@ -121,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         password.setText("");
 
 
-
+        pro.setVisibility(View.GONE);
         final Intent intent=new Intent(LoginActivity.this,MainActivity.class);
         intent.putExtra("uid",currUser.getUid());
        // startActivity(intent);
@@ -142,10 +147,11 @@ public class LoginActivity extends AppCompatActivity {
                         in.putExtra("status",obj.getIsActive());
                         in.putExtra("uid",obj.getUid());
                         startActivity(in);
-
+                        pro.setVisibility(View.GONE);
                     }
                 }else{
                     Toast.makeText(LoginActivity.this, "Your Account Doesn't Exist", Toast.LENGTH_SHORT).show();
+                    pro.setVisibility(View.GONE);
                 }
             }
 
